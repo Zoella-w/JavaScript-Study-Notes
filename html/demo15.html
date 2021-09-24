@@ -121,10 +121,8 @@
         obj4.sayName(); // obj4
         obj4.sayName.call(obj3); // obj3
 
-        // call()参数可以为 对象,形参2,形参3...
-        // apply()参数必须封装为数组 [对象,形参2,形参3...]
-        fun.call(obj, 1, 2);
-        fun.apply([obj, 1, 2]);
+        fun.call(obj, 1, 2);  // call()参数 可以为 对象,形参2,形参3...
+        fun.apply([obj, 1, 2]);  // apply()参数 必须封装为数组 [对象,形参2,形参3...]
     </script>
 
 
