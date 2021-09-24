@@ -7,7 +7,6 @@
 
     <script type="text/javascript">
         window.onload = function() {
-
             var items = document.getElementsByName("items"),
                 checkAll = document.getElementById("checkAllBox");
 
@@ -53,19 +52,26 @@
                 }
             });
 
+            
             /*      DOM节点的增删改查       */
 
             checkAll.onmouseover = function() {
                 console.log("haha");
+                
                 // 创建元素节点对象
                 // document.createElement()
-                var newBtn = document.createElement("button");
+              
                 // 创建文本节点对象
                 // document.createTextNode()
+                
+                var newBtn = document.createElement("button");
+                
                 var newBtnText = document.createTextNode("NewButton");
                 // 将newBtnText设置为newBtn的子节点
+                
                 // appendChild()
                 newBtn.appendChild(newBtnText);
+
                 var body = document.body;
                 body.appendChild(newBtn);
             }
@@ -80,6 +86,7 @@
             // !常用（无需获取父节点）
             // 子节点.parentNode.removeChild(子节点)
 
+            
             /*      ！通过修改innerHTML增删改       */
             // 父节点.innerHTML += "<button>newButton</button>";
             // 但是会重新加载整个父节点
