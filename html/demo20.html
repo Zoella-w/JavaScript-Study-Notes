@@ -45,7 +45,7 @@
                 if (count == 1) {
                     alert("当前是第一张~");
                 } else {
-                    img.src = "./img/img" + --count + ".jpg";
+                    img.src = "../img/img" + --count + ".jpg";
                     img.alt = "壁纸" + count;
                     pg.innerHTML = count;
                 }
@@ -55,7 +55,7 @@
                 if (count == max) {
                     alert("当前是最后一张~");
                 } else {
-                    img.src = "./img/img" + ++count + ".jpg";
+                    img.src = "../img/img" + ++count + ".jpg";
                     img.alt = "壁纸" + count;
                     pg.innerHTML = count;
                 }
@@ -73,7 +73,7 @@
 
         <br/><br/>
 
-        <img id="img" src="./img/img1.jpg" alt="壁纸1" />
+        <img id="img" src="../img/img1.jpg" alt="壁纸1" />
 
         <br/>
 
