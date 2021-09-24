@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>方向键控制移动</title>
+
+    <style type="text/css">
+        #box1 {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            // 解决卡顿
+            // 开启一个定时器，控制div的移动
+            var speed = 5;
+            var dir = 0;
+
+            // 开启一个定时器，来控制div的移动
+            setInterval(function() {
+                switch (dir) {
+                    case 37:
+                        box1.style.left = box1.offsetLeft - speed + "px";
+                        break;
+                    case 39:
+                        box1.style.left = box1.offsetLeft + speed + "px";
+                        break;
+                    case 38:
+                        box1.style.top = box1.offsetTop - speed + "px";
+                        break;
+                    case 40:
+                        box1.style.top = box1.offsetTop + speed + "px";
+                        break;
+                }
+            }, 20);
+
+            var box1 = document.getElementById("box1");
+
+            document.onkeydown = function(event) {
+                event = event || window.event;
+
+                if (event.ctrlKey) {
+                    speed = 30;
+                }
+
+                dir = event.keyCode;
+            };
+
+            document.onkeyup = function(event) {
+                dir = 0;
+                speed = 5;
+            }
+
+        };
+    </script>
+
+</head>
+
+
+<body>
+    <div id="box1"></div>
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #outer {
+            width: 520px;
+            height: 332px;
+            background-color: cadetblue;
+            padding: 10px 0;
+            margin: 50px auto;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #imgList {
+            list-style: none;
+            position: absolute;
+            left: 0;
+        }
+        
+        #imgList li {
+            float: left;
+            margin: 0 10px;
+        }
+        
+        #navDiv {
+            bottom: 15px;
+            position: absolute;
+        }
+        
+        #navDiv a {
+            float: left;
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: red;
+            opacity: 50%;
+        }
+    </style>
+
+    <!-- 将getStyle()和move()函数放置在tools.js中 -->
+    <script type="text/javascript" src="js/tools.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            var imgList = document.getElementById("imgList");
+            var allLi = document.getElementsByTagName("li");
+
+            // 设置imgList的宽度
+            imgList.style.width = 520 * allLi.length + "px";
+
+            var outer = document.getElementById("outer");
+            var navDiv = document.getElementById("navDiv");
+
+            // 设置navDiv左边距
+            navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth) / 2 + "px";
+
+            var allA = document.getElementsByTagName("a");
+            var index = 0;
+            // navDiv[0]初始为黑色
+            allA[index].style.backgroundColor = "black";
+
+
+            // 修改NavDiv样式
+            function setA() {
+                // 如果为最后一张图片（第六张）
+                if (index >= allLi.length - 1) {
+                    index = 0;
+                    // 回到第一张
+                    imgList.style.left = 0;
+                }
+                // navDiv全部变红，当前变黑
+                for (var j = 0; j < allA.length; j++) {
+                    allA[j].style.backgroundColor = "red";
+                }
+                allA[index % allA.length].style.backgroundColor = "black";
+            }
+
+
+            // 为每个超链接绑定响应事件
+            for (var i = 0; i < allA.length; i++) {
+                // 内部不能使用i，全部都为length
+                allA[i].num = i;
+
+                allA[i].onmousemove = function() {
+                    // 关闭上一个timer
+                    clearInterval(timer);
+
+                    setA();
+
+                    index = this.num;
+                    move(imgList, "left", 50, -520 * index, function() {
+                        autoChange();
+                    });
+                };
+            }
+
+
+            var timer;
+
+            // 定时自动切换图片
+            function autoChange() {
+                clearInterval(timer);
+                timer = setInterval(function() {
+                    index++;
+                    move(imgList, "left", 30, -520 * index, function() {
+                        setA();
+                    });
+                }, 3000);
+            }
+
+            autoChange();
+
+        }
+    </script>
+
+</head>
+
+
+<body>
+    <div id="outer">
+        <ul id="imgList">
+            <li><img src="img/1.jpg"></li>
+            <li><img src="img/2.jpg"></li>
+            <li><img src="img/3.jpg"></li>
+            <li><img src="img/4.jpg"></li>
+            <li><img src="img/5.jpg"></li>
+            <li><img src="img/1.jpg"></li>
+        </ul>
+        <div id="navDiv">
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+        </div>
+    </div>
+</body>
+
+</html>

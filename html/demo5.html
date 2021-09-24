@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script type="text/javascript">
+        /*      运算符(也叫操作符)      */
+
+        // typeof 获得值的类型，以string类型返回
+        var a = typeof 123;
+        console.log(a);
+        console.log(typeof a);
+
+
+        // 算数运算符
+        // 对非数字非字符串运算(加减乘除)，转换为数字再运算
+        console.log(1 + true);
+        console.log(NaN + 1);
+        console.log(2 * undefined);
+        console.log(3 / null);
+
+        // 任何数字和字符串相加都转换为string，再连接
+        console.log("123" + "456");
+        var b = 12 + "34";
+        console.log(b);
+        console.log(typeof b);
+        // 利用+ " "将任意类型转换为string，隐式类型转换
+        var c = 123;
+        c = c + "";
+        console.log(typeof c);
+        var d = null;
+        d = d + "";
+        console.log(typeof d);
+
+        // 利用-0、*1、/1将任意类型转换为number，隐式类型转换
+        // 不用+0因为有可能拼字符串
+        var e = "123";
+        e = e - 0;
+        console.log(typeof e);
+
+
+        // 一元运算符
+        // + 不对数字产生影响；- 对数字取反
+        // 对于非number，先将其转换为number再运算
+        var f = true;
+        f = +f;
+        console.log(f);
+        f = -f;
+        console.log(f);
+
+        // 用 + 将字符串变为数字，原理和Number()一样
+        // 隐式类型转换，比+0更简单
+        var g = "18";
+        g = +g;
+        console.log(typeof g);
+    </script>
+
+
+</head>
+
+
+<body>
+
+</body>
+
+</html>

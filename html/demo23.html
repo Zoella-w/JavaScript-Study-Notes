@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script type="text/javascript">
+        window.onload = function() {
+
+            var items = document.getElementsByName("items"),
+                checkAll = document.getElementById("checkAllBox");
+
+            function MyClick(btn, fun) {
+                var btn = document.getElementById(btn);
+                btn.onclick = fun;
+            }
+
+            MyClick("checkAllBtn", function() {
+                for (var i in items) {
+                    items[i].checked = true;
+                }
+                checkAll.checked = true;
+            });
+
+            MyClick("checkNoBtn", function() {
+                for (var i in items) {
+                    items[i].checked = false;
+                }
+                checkAll.checked = false;
+            });
+
+            MyClick("checkRevBtn", function() {
+                for (var i in items) {
+                    if (items[i].checked == false) {
+                        items[i].checked = true;
+                    } else {
+                        items[i].checked = false;
+                    }
+                }
+                if (checkAll.checked == false) {
+                    checkAll.checked = true;
+                } else {
+                    checkAll.checked = false;
+                }
+            });
+
+            MyClick("sendBtn", function() {
+                for (var i in items) {
+                    if (items[i].checked == true) {
+                        alert(items[i].value);
+                    }
+                }
+            });
+
+            /*      DOM节点的增删改查       */
+
+            checkAll.onmouseover = function() {
+                console.log("haha");
+                // 创建元素节点对象
+                // document.createElement()
+                var newBtn = document.createElement("button");
+                // 创建文本节点对象
+                // document.createTextNode()
+                var newBtnText = document.createTextNode("NewButton");
+                // 将newBtnText设置为newBtn的子节点
+                // appendChild()
+                newBtn.appendChild(newBtnText);
+                var body = document.body;
+                body.appendChild(newBtn);
+            }
+
+            // 在其指定子节点之前插入新节点
+            // 父节点.insertBefore(新节点, 旧节点)
+            // 替换其指定子节点
+            // 父节点.replaceChild(新节点, 旧节点)
+            // 删除其子节点
+            // 父节点.removeChild(子节点)
+
+            // !常用（无需获取父节点）
+            // 子节点.parentNode.removeChild(子节点)
+
+            /*      ！通过修改innerHTML增删改       */
+            // 父节点.innerHTML += "<button>newButton</button>";
+            // 但是会重新加载整个父节点
+
+            // （推荐）结合使用
+            // var btn = document.createElement("button");
+            // btn.innerHTML = "newButton";
+
+        };
+    </script>
+
+</head>
+
+<body>
+    <form method="post" action="">
+        你爱好的运动是？<input type="checkbox" id="checkAllBox" />全选/全不选
+        <br/>
+        <input type="checkbox" name="items" value="足球" />足球
+        <input type="checkbox" name="items" value="篮球" />篮球
+        <input type="checkbox" name="items" value="羽毛球" />羽毛球
+        <input type="checkbox" name="items" value="乒乓球" />乒乓球
+        <br />
+        <input type="button" id="checkAllBtn" value="全 选" />
+        <input type="button" id="checkNoBtn" value="全不选" />
+        <input type="button" id="checkRevBtn" value="反 选" />
+        <input type="button" id="sendBtn" value="提 交" />
+    </form>
+</body>
+
+</html>

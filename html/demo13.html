@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script type="text/javascript">
+        /*      原型prototype       */
+        // 每创建一个函数，解析器都会向函数中添加prototype属性
+        // 该prototype属性指向一个原型对象
+        // 如果函数以普通函数调用，prototype没用 
+
+        // 当函数以构造函数形式调用时，创建的对象中会有一个属性指向其原型对象
+        // 可以通过__proto__访问该属性
+        function MyClass(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        var mc1 = new MyClass("a", 18),
+            mc2 = new MyClass("b", 20);
+        console.log(MyClass.prototype == mc1.__proto__);
+        console.log(mc1.__proto__ == mc2.__proto__);
+
+        // 所以可以将对象中共有的内容，添加到原型对象
+        // 访问对象的一个属性或方法时，如果自身中没有向原型中寻找
+        MyClass.prototype.a = 123;
+        MyClass.prototype.sayHello = function() {
+            alert("Hello!");
+        };
+        console.log(mc1.__proto__.a);
+        console.log(mc2.sayHello());
+
+        /*      in 、hasOwnProperty()      */
+        // 使用in检查对象是否含有某属性，原型中有也返回true
+        console.log("name" in mc1);
+        console.log("sayHello" in mc2); // true
+
+        // 使用方法hasOwnProperty()检查对象自身是否含有某属性/方法
+        console.log(mc1.hasOwnProperty("sayHello")); // false
+        console.log(mc2.hasOwnProperty("age"));
+        console.log(mc1.hasOwnProperty("hasOwnPorperty")); // false
+
+        // 原型对象也有原型
+        console.log(mc1.__proto__.hasOwnProperty("hasOwnPorperty")); // false
+        console.log(mc1.__proto__.__proto__.hasOwnProperty("hasOwnPorperty")); // true
+
+        console.log(mc1.__proto__.__proto__); // Object
+        // Object对象没有原型
+        console.log(mc1.__proto__.__proto__.__proto__); // null
+    </script>
+
+
+</head>
+
+<body>
+
+</body>
+
+</html>

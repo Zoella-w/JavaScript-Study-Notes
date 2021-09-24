@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script type="text/javascript">
+        /*      自增/自减       */
+        var a = 20;
+        a = a++ + ++a + a;
+        console.log(a); // 结果为64
+
+        // 双目运算符=优先级低于单目运算符++，故先++再=
+        // 等价于 var c = b++; b = c;
+        var b = 20;
+        b = b++;
+        console.log(b);
+
+
+        /*      逻辑运算符 !、&&、||        */
+
+        // !! 将非布尔值转换为布尔值，和Boolean()原理一样
+        var c = 0;
+        c = !!c;
+        console.log(c + ' ' + typeof c);
+
+        // && 为短路，出现false则直接返回false
+        true && alert("&&第一个为true");
+        false && alert("&&第一个为false");
+
+        // || 为短路，出现true则直接返回true
+        true || alert("||第一个为true");
+        false || alert("||第一个为false");
+
+
+        // 将非布尔值转换为布尔值，再运算，但是返回原值！
+        // && 出现 true，返回后面的原值
+        var d = 123 && "abc";
+        console.log(d + ' ' + typeof d);
+        // && 出现 false，返回前面的原值
+        var f = 0 && "abc";
+        console.log(f + ' ' + typeof f);
+
+        // || 出现 false，返回后面的原值
+        var e = 0 || 123;
+        console.log(e + ' ' + typeof e);
+        // || 出现 true，返回前面的原值
+        var g = "abc" || 123;
+        console.log(g + ' ' + typeof g);
+
+
+        /*      赋值运算符      */
+        // += 、 -= 、 *= 、 /= 
+
+
+        /*      比较运算符      */
+        // 非数字参与比较（两侧不能都为字符串），先转换为数字
+        console.log(11 > "5");
+
+        // undefined和非数字串都转换为NaN，比较结果为false
+        console.log("abc" > 1);
+
+        // 特殊情况：两侧都为字符串，不转换为数字，比较Unicode(字典序)
+        console.log("abc" < "abd");
+        console.log("11" > "5");
+        console.log(+"11" > +"5"); // 注意转为number再比较
+    </script>
+
+
+</head>
+
+
+<body>
+</body>
+
+</html>

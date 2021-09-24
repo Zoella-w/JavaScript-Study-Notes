@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <!-- 从上至下按顺序执行 -->
+
+    <!-- 推荐使用：外部引入，可在不同的页面中同时引用，利用浏览器缓存机制 -->
+    <script src="js/jsDemo.js">
+        /* 在内部编写无效 */
+    </script>
+
+    <!-- 编写到script标签 -->
+    <!-- 内部JS代码 -->
+    <script type="text/javascript">
+        alert("我是内部代码：在浏览器弹出警告窗");
+    </script>
+
+
+</head>
+
+
+<body>
+    <!-- 写在标签的onclick/href属性里，不方便维护 -->
+    <button onclick="alert('我是按钮~')">点我一下</button>
+    <a href="javascript:alert('我是链接~')">再点我一下</a>
+</body>
+
+</html>

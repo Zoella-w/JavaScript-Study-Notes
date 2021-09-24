@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        /*      页面加载        */
+        // 写在上面性能差一些
+        // onload事件在整个页面加载完才出现
+        // 可以写在body上边
+
+        /*      事件        */
+        // ondblclick() 双击 、 onmousemove()移动
+        // 绑定一个单击事件
+        // 称为单击响应函数
+        window.onload = function() {
+            btn.onclick = function() {
+                alert("haha");
+            };
+        }
+    </script>
+
+</head>
+
+<body>
+    <button id="btn" name="btn">我是按钮1</button>
+    <button id="btn1" name="button1">我是按钮2</button>
+    <button id="btn2" name="button1">我是按钮3</button>
+    <button id="btn3" name="button2">我是按钮4</button>
+    <button id="btn4" name="button2">我是按钮5</button>
+    <!-- <button id="btn" onclick="alert("haha");">我是按钮</button> -->
+    <script type="text/javascript">
+        /*      DOM树     */
+
+        /*      节点        */
+        /*      文档节点：整个HTML文档      */
+        // nodeName:"#document" 
+        // nodeType:9
+        // nodeValue:null
+
+        /*      元素节点：HTML标签      */
+        // nodeName:"标签名"
+        // nodeType:1
+        // nodeValue:null
+
+        /*      属性节点：元素的属性        */
+        // nodeName:"属性名"
+        // nodeType:2
+        // nodeValue:属性值
+
+        /*      文本节点：标签中的文本内容      */
+        // nodeName:"#text" 
+        // nodeType:3
+        // nodeValue:文本内容
+
+        // 文档节点对象(document)，是window的属性
+        console.log(document);
+
+
+        /*      获取元素节点        */
+        /*      getElementById()        */
+        // 通过id获得一个对象
+        var btn = document.getElementById("btn");
+
+        /*      innerHTML       */
+        // 修改按钮文字
+        btn.innerHTML = "My id is btn.";
+        // 返回元素属性（返回class时要写成.className）
+        console.log(btn.name);
+
+        /*      innerText       */
+        // 会把文本中的标签省略
+
+        /*      getElementByName()        */
+        // 通过name获得一组对象
+        var btn1 = document.getElementsByName("button1");
+        console.log(btn1);
+
+        /*      getElementByTagName()        */
+        // 通过标签名获得一组对象
+        var btn2 = document.getElementsByTagName("button");
+        console.log(btn2);
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- 练习：图片切换 -->
+
+    <title>图片切换</title>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-size: 15px;
+        }
+        
+        #outer {
+            width: 500px;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: pink;
+            text-align: center;
+        }
+        
+        img {
+            display: block;
+            height: 250px;
+            margin: 0 auto;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function() {
+
+            var max = 4;
+            var count = 1;
+
+            var pg = document.getElementById("pg"),
+                img = document.getElementById("img"),
+                btn1 = document.getElementById("prev"),
+                btn2 = document.getElementById("next");
+
+            btn1.onclick = function() {
+                if (count == 1) {
+                    alert("当前是第一张~");
+                } else {
+                    img.src = "./img/img" + --count + ".jpg";
+                    img.alt = "壁纸" + count;
+                    pg.innerHTML = count;
+                }
+            }
+
+            btn2.onclick = function() {
+                if (count == max) {
+                    alert("当前是最后一张~");
+                } else {
+                    img.src = "./img/img" + ++count + ".jpg";
+                    img.alt = "壁纸" + count;
+                    pg.innerHTML = count;
+                }
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <div id="outer">
+        <span>当前为第
+            <span id="pg">1</span> 张图片
+        </span>
+
+        <br/><br/>
+
+        <img id="img" src="./img/img1.jpg" alt="壁纸1" />
+
+        <br/>
+
+        <button id="prev">上一张</button> &nbsp;&nbsp;&nbsp;&nbsp;
+        <button id="next">下一张</button>
+    </div>
+</body>
+
+</html>

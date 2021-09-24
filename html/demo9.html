@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script type="text/javascript">
+        /*      Object      */
+        // 内建对象，任何ES标准可用（如Math、String、Number）
+        // 宿主对象，浏览器提供的对象（如 DOM、BOM）
+        // 自定义对象
+
+        /*      创建对象        */
+        // 使用new关键字，调用构造函数contributor
+        var obj = new Object();
+        console.log(typeof obj);
+        console.log(obj);
+
+        /*      添加/读取属性        */
+        // 对象的属性名不强制要求遵守标识符的规范
+        obj.age = 20;
+        obj.name = "Ming";
+        obj.gender = "male";
+        obj.var = true;
+        console.log(obj);
+
+        // 如果使用特殊属性名，不能采用.，要采用[""]
+        obj["123"] = 456;
+        // 使用[""]形式更加灵活
+        var n = "123";
+        console.log(obj[n]);
+        console.log(obj["123"]);
+
+        /*      in运算符        */
+        // 检测对象中是否含有指定属性
+        console.log("age" in obj);
+
+        /*      Object是引用数据类型        */
+        // 对象保存在堆内存，变量保存的是地址
+        var obj1 = new Object();
+        obj1.age = 18;
+        var obj2 = obj1;
+        obj2.age = 20;
+        console.log(obj1.age);
+        console.log(obj1 == obj2); // true (比较内存地址)
+        var obj3 = new Object();
+        obj3.age = 20;
+        console.log(obj1 == obj3); // false (比较内存地址)
+
+        /*      Object字面量        */
+        // {} 创建对象
+        var obj4 = {};
+        var obj5 = {
+            age: 20,
+            name: "Ming",
+            gender: "male",
+            // 使用特殊属性名，必须加""
+            "123": 456
+        };
+        console.log(obj5);
+    </script>
+
+
+</head>
+
+<body>
+</body>
+
+</html>

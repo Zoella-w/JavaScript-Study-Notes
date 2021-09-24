@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script type="text/javascript">
+        // 强制类型转换：将其他数据类型转换为String、Number、Boolean
+
+
+        /*      String      */
+        // 调用被转换数据类型的toString()方法，不影响原变量
+        // Null和Undefined数据类型没有toString()方法
+        var a = 123;
+        console.log(typeof a.toString());
+        console.log(typeof a);
+
+        var b = 123;
+        b = b.toString();
+        console.log(typeof b);
+
+        var c = true;
+        c = c.toString();
+        console.log(typeof c);
+
+        // 调用String()函数，并将被转换数据作为参数传给函数
+        // 对于Number和Boolean类型，底层调用toString()方法
+        // Null和Undefined数据类型也可以使用String()函数
+        var d = null;
+        d = String(d);
+        console.log(d);
+        console.log(typeof d);
+
+        var e;
+        e = String(e);
+        console.log(e);
+        console.log(typeof e);
+
+
+        /*      Number      */
+        // 调用Number()函数
+        // 数字串转为数字；有非数字的串转为NaN；串为空/全空格转为0
+        // 布尔转数字：true-->1；false-->0
+        // null转数字：0
+        // undefined转数字：NaN
+        var f = "abc";
+        console.log(Number(f));
+
+        // 使用Number()得到的NaN，数据类型为number
+        console.log(Number("abc"));
+        console.log(typeof Number("abc"));
+
+        // parse用来对付字符串，将有效的整数取出（从左向右，直到字母）
+        // parseInt()把串转换为整数；parseFloat()把串转换为浮点数
+        var g = "123px";
+        console.log(parseInt(g));
+        var h = "b123"
+        console.log(parseInt(h));
+        var i = "123.45px"
+        console.log(parseFloat(i));
+
+        // 对于非string，先将其转换为string，然后再操作
+        // 所以对于boolean、null、undefined，结果都为NaN
+        var j = true;
+        console.log(parseInt(j));
+
+        // 浮点数取整（先转为string）
+        var k = 198.23;
+        k = parseInt(k);
+        console.log(k);
+
+        // 使用参数对parseInt()指定进制
+        var l = "070";
+        console.log(parseInt(l, 10)); // 将070当作10进制
+        console.log(parseInt(l, 8)); // 将070当作8进制
+
+
+        /*      Boolean     */
+        // 使用Boolean()函数
+        // 0、NaN、空串、null、undefined为false，其余全为true
+        var m = 123;
+        console.log(Boolean(m));
+        var n = 0;
+        console.log(Boolean(n));
+        var o = NaN;
+        console.log(Boolean(o));
+        var p = null;
+        console.log(Boolean(p));
+        var q;
+        console.log(Boolean(q));
+    </script>
+
+
+</head>
+
+
+<body>
+
+</body>
+
+</html>

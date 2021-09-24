@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script type="text/javascript">
+        /*      流程控制语句        */
+        /*      条件判断语句        */
+        var a = 5;
+        if (a > 10 || a <= 0) {
+            // document.write()用</br>换行
+            document.write("a > 10 or a <= 0" + "</br>");
+            if (a > 10) {
+                document.write("a > 10");
+            } else {
+                document.write("a <= 0");
+            }
+        } else if (a > 5) {
+            document.write("5 < a <= 10");
+        } else {
+            document.write("0 < a <= 5");
+        }
+
+        // prompt()弹出一个提示框，可输入，返回值为string
+        var n1 = +prompt("输入第一个数字");
+        var n2 = +prompt("输入第二个数字");
+        var max = n1;
+        if (n2 > n1) {
+            max = n2;
+        }
+        document.write("</br>" + "最大值为" + max);
+
+        /*      条件分支语句        */
+        // switch语句，case后和switch后进行全等比较
+        var num = +prompt("请输入 1~4 的数字");
+        switch (num) {
+            case 1:
+                num = "一";
+                break;
+            case 2:
+                num = "二";
+                break;
+            case 3:
+                num = "三";
+                break;
+            case 4:
+                num = "四";
+                break;
+            default:
+                num = "非法数字";
+                break;
+        }
+        alert("输入为" + num);
+
+        /*      循环语句        */
+        // while循环
+        // for循环，三个部分都可以不写，或者写在外边
+
+        // break跳出当前循环，continue跳过当次循环
+        // 可以为循环语句创建label:，标识当前循环
+        outer:
+            for (var i = 0; i < 5; i++) {
+                console.log("外层循环" + i);
+                for (var j = 0; j < 5; j++) {
+                    break outer; // 跳出外层循环
+                    console.log("内层循环" + j);
+                }
+            }
+
+        // 测试程序性能：执行前console.time()，字符串参数为计时器的名字
+        // 执行后console.end()，传入需要停止计时器的名字
+    </script>
+
+
+</head>
+
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #areaDiv {
+            width: 350px;
+            height: 80px;
+            border-color: black;
+            border-style: groove;
+        }
+        
+        #showMsg {
+            width: 350px;
+            height: 40px;
+            border-color: black;
+            border-style: groove;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            var areaDiv = document.getElementById("areaDiv"),
+                showMsg = document.getElementById("showMsg");
+
+            /*      事件对象        */
+            // 当事件的响应函数被触发时，
+            // 浏览器每次都会将一个事件对象作为实参传进响应函数
+            // 在事件对象中封装了当前事件的一切信息：
+            // 鼠标坐标、键盘按键、鼠标滚轮...
+            areaDiv.onmousemove = function(event) {
+                // 处理兼容性问题
+                if (!event) {
+                    event = window.event;
+                }
+                // event.clientX可以获取鼠标指针的水平坐标
+                // event.clientY可以获取鼠标指针的垂直坐标
+                var x = event.clientX,
+                    y = event.clientY;
+                showMsg.innerHTML = "x=" + x + ", y=" + y;
+            }
+
+        };
+    </script>
+
+</head>
+
+<body>
+    <div id="areaDiv"></div>
+    <br/>
+    <div id="showMsg"></div>
+</body>
+
+</html>

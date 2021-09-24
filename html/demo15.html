@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script type="text/javascript">
+        var arr1 = [1, "abc", true, 1234, "www"];
+
+        /*      slice()     */
+        // 不影响原数组
+        // 从数组中截取指定元素（第一个参数必须比第二个参数小）
+        // 包含前不包含后
+        var result1 = arr1.slice(1, 3); // [abc, true]
+        console.log(result1);
+
+        // 省略第二个参数，截取第一个参数之后的
+        var result2 = arr1.slice(2);
+        console.log(result2);
+
+        // 负数代表倒数第几个
+        var result3 = arr1.slice(-3, -1);
+        console.log(result3);
+
+
+        /*      splice()      */
+        // 影响原数组
+        // 删除，替换，插入
+        // 第一个参数：开始索引；第二个元素：删除个数；第三个元素：插入元素
+        arr1.splice(1, 3, "b", "c");
+        console.log(arr1);
+
+        // 去重
+        var arr = [1, 2, 2, 3, 1, 6, 2, 7];
+
+        function deleRepetition(arr) {
+            for (var i = 0; i < arr.length - 1; i++) {
+                for (var j = i + 1; j < arr.length; j++) {
+                    if (arr[i] == arr[j]) {
+                        arr.splice(j, 1);
+                        j--;
+                    }
+                }
+            }
+            return arr;
+        }
+        var result4 = deleRepetition(arr);
+        console.log(result4);
+
+
+        /*      reverse     */
+        // 影响原数组
+        arr.reverse();
+        console.log(arr);
+
+
+        /*      concat()        */
+        // 不影响原数组
+        // 连接多个数组，返回新数组
+        var result5 = arr.concat(arr1);
+        console.log(result5);
+
+
+        /*      join()      */
+        // 不影响原数组
+        // 将连接后的字符串返回，参数为连接符
+        var result6 = arr.join("*");
+        console.log(result6);
+
+
+        /*      sort()      */
+        // 影响原数组
+        // 按照Unicode编码排序（不适合数字）
+        arr.sort();
+        // arr.reverse();
+
+        // 添加回调函数，指定排序规则（数字）
+        // 升序
+        arr.sort(function(a, b) {
+            return a - b;
+        });
+        console.log(arr);
+
+        // 降序
+        arr.sort(function(a, b) {
+            return b - a;
+        });
+        console.log(arr);
+
+
+        /*      call()、apply()     */
+        // 都为函数对象的方法，在函数执行时会调用
+        // fun() ==> fun.call() / fun.apply()
+        var obj = {};
+
+        function fun() {
+            alert(this);
+        }
+
+        fun(obj); // window
+
+        // 参数传的是谁，this就是谁（由window变为object）
+        fun.call(obj); // object
+        fun.apply(obj); // object
+
+        var obj3 = {
+            name: "obj3",
+            sayName: function() {
+                console.log(this.name);
+            }
+        };
+
+        var obj4 = {
+            name: "obj4",
+            sayName: function() {
+                console.log(this.name);
+            }
+        };
+
+        obj4.sayName(); // obj4
+        obj4.sayName.call(obj3); // obj3
+
+        // call()参数可以为 对象,形参2,形参3...
+        // apply()参数必须封装为数组 [对象,形参2,形参3...]
+        fun.call(obj, 1, 2);
+        fun.apply([obj, 1, 2]);
+    </script>
+
+
+</head>
+
+<body>
+
+</body>
+
+</html>

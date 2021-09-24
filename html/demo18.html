@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script type="text/javascript">
+        /*      正则表达式      */
+
+        // 创建正则表达式对象
+        // 第一个参数为表达式，第二个参数为匹配模式
+        var reg1 = new RegExp("a");
+        console.log(typeof reg); // object
+
+        /*      test()      */
+        // 检查字符串是否符合规则
+        // 检查字符串中是否有"a"
+        console.log(reg1.test("abc")); // true
+        console.log(reg1.test("Abc")); // false
+
+        // i表示忽略大小写
+        var reg2 = new RegExp("a", "i");
+        console.log(reg2.test("Abc")); // true
+
+        // 用字面量创建正则表达式
+        var reg3 = /a/i;
+        // | 表示或
+        // []也表示或 、 [A-z]表示所有大小写字母
+        // [^ ]表示除了
+        reg3 = /[^abc]/; // 不含a、b、c中任一字符
+        console.log(reg3.test("a")); // false
+
+
+        /*      叠词        */
+        //  /(ab){n}/ 、 /(ab){m,n}/ 、 /(ab){m,}
+        //  /ab+c/  b+表示至少有一个b  == b{1,}
+        //  /ab*c/  b*表示任意多个b   == b{0,}
+        //  /ab?c/  b?表示0或1个b  == b{0,1}
+        //  /^(ab)c/  ^(ab)表示以ab开头
+        //  /a(bc)$  (bc)$表示以bc结尾
+        //  /./  表示任意字符
+        //  /\./  /\\/
+        var reg = /^a$/; // 表示只能为a
+        reg = /^a|a$/; // 表示以a开头以a结尾
+
+        /*      示例        */
+        // 手机号
+        reg = /^1[3-9][0-9]{9}$/;
+        // $结尾表示后面不能再有其他内容
+
+        // 电子邮箱
+        // 3位以上字母数字下划线，1组以上(.字母数字下划线）
+        // @1位以上字母数字.2到5位字母（可选）.2到5位字母
+        reg = /^\w{3,}(\.\w+)*@[A-z0-9]+(\.[A-z]{2,5}){1,2}$/;
+
+        /*      \字母       */
+        //  \w 任意字母、数字、_
+        //  \W 除了任意字母、数字
+        reg = /\W/;
+        console.log(reg.test("a")); // false
+        console.log(reg.test("+")); // true
+        console.log(reg.test("_")); // false
+
+        //  \d 任意数字
+        //  \D 除了任意数字
+        reg = /\D/;
+        console.log(reg.test("a")); // true
+        console.log(reg.test(123)); // false
+
+        //  \s 空格
+        //  \S 除了空格
+        reg = /\S/;
+        console.log(reg.test("a")); // true
+        console.log(reg.test(" ")); // false
+
+        //  \b 单词边界
+        // 前后必须没有数字或字母
+        console.log("\\b");
+        reg = /\bchild\b/;
+        console.log(reg.test("hello child!")); // true
+        console.log(reg.test("'child!")); // true
+        console.log(reg.test("child?")); // true
+        console.log(reg.test("child1")); // false
+        console.log(reg.test("childr")); // false
+        console.log(reg.test("Hichild")); // false
+
+        //  \B 除了单词边界
+        // 前后必须都有数字或字母
+        console.log("\\B");
+        reg = /\Bchild\B/;
+        console.log(reg.test("hello child!")); // false
+        console.log(reg.test("'child!")); // false
+        console.log(reg.test("child?")); // false
+        console.log(reg.test("child1")); // false
+        console.log(reg.test("childr")); // false
+        console.log(reg.test("Hichild1")); // true
+
+
+        /*      split()       */
+        // 可以根据正则表达式拆分字符串
+        var str1 = "1a3ss4a5h6j7k8e6yyy";
+        var result1 = str1.split(/[A-z]/);
+        console.log(result1);
+
+        /*      search()        */
+        // 是否含有指定内容，有返回索引，无返回-1
+        // 只能返回第一个，无法设置全局模式
+
+        //*     match()     */
+        // 将第一个符合条件的内容提取出来
+        var str2 = " 1a2b3c4D5e6F7 g ";
+        var result2 = str2.match(/[A-z]/);
+        console.log(result2); // a
+        // 设置全局模式 g ，以数组形式返回多个字符串
+        result2 = str2.match(/[A-z]/ig);
+        console.log(result2); // 数组
+
+        /*      replace()       */
+        // 只替换第一个
+        var result3 = str2.replace(/[A-Z]/g, "@");
+        console.log(result3);
+
+        // 去除字符串空格
+        result3 = str2.replace(/\s/g, "");
+        console.log(result3);
+
+        // 只去除字符串前后空格
+        result3 = str2.replace(/^\s|\s$/g, "");
+        console.log(result3);
+    </script>
+
+
+</head>
+
+<body>
+
+</body>
+
+</html>

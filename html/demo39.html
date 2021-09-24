@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style type="text/css">
+
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            /*      JSON        */
+            /*      JavaScript Object Notation --> JS对象表示法     */
+            // IE7及以下通过外部文件引入JSON
+
+            // JSON 分类：对象，数组
+            // JSON 不能传函数对象
+
+            // JSON 属性名必须加""
+            var json = '{"name":"Bob", "age":18, "gender":"male"}';
+
+
+            /*      将JSON字符串和JS对象相互转换        */
+            // IE8及以下不支持
+
+            // JSON字符串 --> JS对象
+            var obj = JSON.parse(json);
+            console.log(obj.name); // Bob
+
+            // JS对象 --> JSON字符串
+            var json2 = JSON.stringify(obj);
+            console.log(json2);
+
+
+            /*      eval()      */
+            // 执行字符串
+            // 需要将字符串中非代码块的{}外加()
+            // eval("(" + str2 + ")");
+
+            // 危险：SQL注入
+            var str2 = "alert('hello');";
+            eval(str2);
+        }
+    </script>
+
+</head>
+
+
+<body>
+
+</body>
+
+</html>

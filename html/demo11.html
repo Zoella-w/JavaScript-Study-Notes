@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script type="text/javascript">
+        /*      作用域      */
+        /*      全局作用域      */
+        // 全局对象window，代表浏览器窗口
+        // 再全局作用域中创建的变量/函数，都保存为window对象的属性/方法
+        var a = 10;
+        console.log(window.a);
+        window.f1();
+
+        //      变量的声明提前
+        // 使用var声明的变量，会在所有代码执行前被声明
+        // 不用var相当于给window对象增加属性，不会声明提前
+        console.log(b);
+        var b = 123; // undefined不报错
+
+        //      函数的声明提前
+        // 不用var声明的函数，会在所有代码执行前创建
+        // 使用var声明的函数，不提前创建，不能被提前调用
+        f1();
+
+        function f1() {
+            console.log("f1");
+        }
+
+        var f2 = function() {
+            console.log("f2");
+        }
+
+
+        /*      函数作用域      */
+        // 在函数中调用全局变量用window对象
+        function f3() {
+            var b = 1;
+            console.log(window.b + 1);
+        }
+        f3();
+
+        // 函数作用域中也有变量和函数的声明提前
+        var c = 33;
+
+        function f4() {
+            console.log(c); // undefined
+            var c = 10;
+        }
+        f4();
+        console.log(c); // c=33
+
+        // ！在函数中不用var声明的变量是全局变量
+        var d = 33;
+
+        function f5() {
+            console.log(d); // c=33
+            d = 10;
+        }
+        f5();
+        console.log(d); // c=10
+
+        // 形参相当于在函数中用var声明变量
+        var e = 33;
+
+        function f6(e) {
+            console.log(e); // undefined
+            e = 10;
+        }
+        f6();
+        console.log(e); // e=33
+    </script>
+
+
+</head>
+
+<body>
+</body>
+
+</html>

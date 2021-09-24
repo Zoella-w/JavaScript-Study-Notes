@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style type="text/css">
+        #box1 {
+            width: 200px;
+            height: 200px;
+            background-color: yellowgreen;
+        }
+        
+        #s1 {
+            background-color: yellow;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function() {
+
+            /*      事件的冒泡      */
+            // 当一个事件被触发，其祖先元素的相同事件也会被触发
+            var s1 = document.getElementById("s1");
+            s1.onclick = function(event) {
+                alert("我是span的单击响应函数");
+
+                // 取消冒泡
+                // 可以将事件对象的cancelBubble设置为true，即可取消冒泡
+                event.cancelBubble = true;
+            };
+
+            var box1 = document.getElementById("box1");
+            box1.onclick = function() {
+                alert("我是div的单击响应函数");
+            };
+
+            document.body.onclick = function() {
+                // alert("我是body的单击响应函数");
+            };
+
+
+            /*      事物的委派      */
+
+            // var allA = document.getElementsByTagName("a");
+            // for (var i = 0; i < allA.length; i++) {
+            //     allA[i].onclick = function() {
+            //         alert("我是a的响应函数！");
+            //     };
+            // }
+
+            // 只绑定一次事件，即可应用到多个元素，即使元素是后添加的
+            // 减少绑定次数，提高程序性能
+            // 将事件绑定给祖先元素ul
+            var u1 = document.getElementById("u1");
+            u1.onclick = function(event) {
+                // 如果触发事件的对象是期望的元素，则响应
+                // event.target表示触发事件的对象
+                event = event || window.event;
+                if (event.target.className == "link") {
+                    alert("我是来自ul的响应函数！");
+                }
+            };
+
+            var btn1 = document.getElementById("btn1");
+            btn1.onclick = function() {
+                var li = document.createElement("li");
+                li.innerHTML = "<a href='javascript:;' class='link'>新建超链接</a>";
+                u1.appendChild(li);
+            };
+
+
+            /*      事件的绑定      */
+            // 同时绑定两个响应函数（用onclick第一个会被覆盖）
+            // addEventListener()的三个参数
+            // 事件的字符串(无on)；回调函数；是否在捕获阶段触发(一般为false)
+            var btn2 = document.getElementById("btn2");
+
+            // btn2.addEventListener("click", function() {
+            //     alert(1);
+            // }, false);
+
+            // btn2.addEventListener("click", function() {
+            //     alert(2);
+            // }, false);
+
+            // btn2.addEventListener("click", function() {
+            //     alert(3);
+            // }, false);
+
+            // IE8 不支持
+            // 使用attachEvent() 绑定事件，第一个参数有on
+            // 且执行顺序相反
+            // var btn3 = document.getElementById("btn3");
+
+            // btn3.attachEvent("onclick", function() {
+            //     alert(3);
+            // });
+            // btn3.attachEvent("onclick", function() {
+            //     alert(2);
+            // });
+            // btn3.attachEvent("onclick", function() {
+            //     alert(1);
+            // });
+
+
+            bind(btn2, "click", function() {
+                alert(1);
+            });
+
+            bind(btn2, "click", function() {
+                alert(2);
+            });
+
+            /*      定义一个函数，为指定元素绑定响应函数（）兼容        */
+            function bind(obj, eventStr, callback) {
+                if (obj.addEventListener) {
+                    obj.addEventListener(eventStr, callback, false);
+                } else {
+                    obj.attachEvent("on" + event, function() {
+                        // 统一this，将其改为obj（原来是Window调用）
+                        callback.call(obj);
+                    });
+                }
+            }
+
+
+            /*      事件的捕获和冒泡        */
+            // W3C将事件分为三个阶段
+            // 1、捕获阶段，从祖先元素向内进行捕获，但不触发
+            // 2、目标阶段，捕获结束，触发开始
+            // 3、冒泡阶段，从内向祖先元素进行冒泡，并依次触发
+
+            // addEventListener()第三个参数设为true为捕获时触发
+
+            // IE8没有捕获阶段
+
+        };
+    </script>
+
+</head>
+
+
+<body>
+    <div id="box1">
+        我是box1
+        <span id="s1">我是一个span</span>
+    </div>
+    <br>
+    <button id="btn1">添加超链接</button>
+    <ul id="u1" style="background-color: #bfa;">
+        <li><a href="javascript:;" class="link">超链接一</a></li>
+        <li><a href="javascript:;" class="link">超链接二</a></li>
+        <li><a href="javascript:;" class="link">超链接三</a></li>
+    </ul>
+    <br>
+    <button id="btn2">我是按钮</button>
+    <br>
+    <br>
+    <!-- <button id="btn3">我也是按钮</button> -->
+</body>
+
+</html>

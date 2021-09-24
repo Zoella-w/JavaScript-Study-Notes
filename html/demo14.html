@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script type="text/javascript">
+        /*      toString        */
+        // 打印一个对象时，实际上是输出对象toString()的返回值
+        function Person(name, age, gender) {
+            this.name = name,
+                this.age = age,
+                this.gender = gender
+        }
+
+        var p1 = new Person("a", 18, "male");
+        console.log("toString" in Person.prototype);
+
+        console.log(p1.hasOwnProperty("toString"));
+        console.log(p1.__proto__.hasOwnProperty("toString"));
+        console.log(p1.__proto__.__proto__.hasOwnProperty("toString"));
+
+
+        /*      垃圾回收(GC)        */
+        // JS可以自动释放堆空间
+        var obj = new Object();
+        obj = null;
+
+
+        /*      Array       */
+        var arr1 = new Array(1, "abc", true);
+        console.log(arr1[0]);
+        console.log(arr1[1]);
+        console.log(arr1[2]);
+
+        // 不存在的索引，不会报错
+        console.log(arr1[-1]); // undefined
+
+        // 对于非连续数组，length为最大索引加一
+        // 尽量不创建非连续数组
+        var arr2 = new Array(1, "abc");
+        arr2[5] = 123;
+        console.log(arr2.length); // 6
+
+        // 修改length，多余的部分会空出来
+        arr2.length = 8;
+        console.log(arr2);
+
+        // 和用new创建几乎无区别
+        var arr3 = [1, "abc", true];
+
+        // 创建只有元素10的数组
+        arr3 = [1];
+        console.log(arr3);
+        // 创建长度为10的数组
+        arr3 = new Array(10);
+        console.log(arr3);
+
+
+        /*      push        */
+        // 向数组末尾添加元素，返回数组新长度
+        var result1 = arr1.push("123", 0, false);
+        console.log(arr1);
+        console.log(result1);
+
+        /*      unshift     */
+        // 向数组开头添加元素，返回数组新长度
+        var result2 = arr1.unshift("www", 233);
+        console.log(arr1);
+        console.log(result2);
+
+        /*      pop     */
+        // 删除数组最后一个元素，返回删除元素
+        var result3 = arr1.pop();
+        console.log(arr1);
+        console.log(result3);
+
+        /*      shift     */
+        // 删除数组第一个元素，返回删除元素
+        var result4 = arr1.shift();
+        console.log(arr1);
+        console.log(result4);
+
+
+        /*      遍历数组        */
+        for (var i = 0; i < arr1.length; i++) {
+            console.log(arr1[i]);
+        }
+
+        for (var n in arr1) {
+            console.log(n + " " + arr1[n]);
+        }
+
+        /*      forEach()方法       */
+        // forEach(fun)方法，只支持IE9及以上（IE8不兼容）
+        // 需要一个函数做参数，有几个元素调用几次
+        // 会返回三个形参：
+        // 正在遍历的元素、正在遍历元素的索引、返回该数组对象
+        arr1.forEach(function(a, b, c) {
+            console.log(a + " " + b + " [" + c + "]"); // c = arr1
+        })
+    </script>
+
+
+</head>
+
+<body>
+
+</body>
+
+</html>

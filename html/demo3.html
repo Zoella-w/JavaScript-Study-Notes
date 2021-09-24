@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script type="text/javascript">
+        // 数据类型是字面量的类型
+        // 共六种：String、Number、Boolean、Null、Undefined、Object
+        // 前五种是基本数据类型，Object是引用数据类型
+
+
+        /*      String      */
+        // 使用" "或' '
+        // 转义符 \
+        var str1 = "我说：\n\"hello\t!\"";
+        console.log(str1);
+        var str2 = "\\";
+        console.log(str2);
+
+
+        /*      Number      */
+        // 使用运算符typeof检查变量类型
+        var a = 123;
+        var b = "123";
+        console.log(typeof a);
+        console.log(typeof b);
+        // NaN类型为number
+        console.log(typeof NaN);
+
+        // 数字最大值 = 1.7976931348623157e+308
+        console.log(Number.MAX_VALUE);
+        // 超过最大值 = Infinity，正无穷
+        // 超过最小值 = -Infinity，负无穷
+        console.log(Number.MAX_VALUE * Number.MAX_VALUE);
+        console.log(-Number.MAX_VALUE * Number.MAX_VALUE);
+
+        // 数字最小值 = 5e-324（大于0的最小正值）
+        console.log(Number.MIN_VALUE);
+
+        // 非数字，结果为NaN，类型为Numebr
+        var c = "1" * "2"; // 结果为2
+        var d = "a" * "b";
+        console.log(c);
+        console.log(d);
+        console.log(typeof d);
+
+        // 使用js进行浮点元素，可能得到不精确的结果
+        console.log(0.1 + 0.2);
+
+        // 表示16进制：0x
+        var x = 0x10;
+        console.log(x);
+        x = 0xCafe;
+        console.log(x);
+        // 表示8进制：0
+        var y = 070;
+        console.log(y);
+        // 表示2进制：0b，部分不支持
+        var z = 0b1;
+        console.log(z);
+
+        /*      Boolean     */
+        var bool = false;
+        console.log(bool);
+        console.log(typeof bool);
+
+
+        /*      Null        */
+        // typeof返回object
+        var n = null;
+        console.log(n);
+        console.log(typeof n);
+
+
+        /*      Undefined       */
+        // 声明但未赋值
+        // typeof返回undefined
+        var u;
+        console.log(typeof u);
+    </script>
+
+
+</head>
+
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script type="text/javascript">
+        /*      Unicode编码     */
+        // \u + 四位编码（16进制）
+        console.log("\u2620");
+
+
+        /*      相等运算符      */
+        //      == / !=
+        // 字符串和布尔值转为数字，再比较
+        console.log("1" == 1); // true
+        console.log(true == "1"); // true
+        console.log(true == "abc"); // false
+
+        // null 不转成 number
+        console.log(null == 0); // false
+
+        // undefined衍生至null，判断相等
+        console.log(undefined == null); // true
+
+        // NaN不和任何值相等，包括它本身
+        console.log(NaN == NaN); // false
+        // 判断是否为NaN，不能用==，使用isNaN()函数来判断
+        console.log(isNaN(NaN)); // true
+        console.log(isNaN(123)); // false
+
+        //      ===
+        // 全等（不做类型转换）
+        console.log(1 === "1");
+
+        //      !==
+        // 不全等（不做类型转换）
+        console.log(1 !== "1");
+
+
+        /*      条件(三元)运算符      */
+        // 表达式?语句1:语句2;
+        // true执行语句1，false执行语句2
+        var a = 3,
+            b = 4,
+            c = 5;
+        var max = a > b ? a : b;
+        max = max > c ? max : c;
+        console.log(max);
+        // 表达式为非布尔值，则先转换为布尔值
+
+
+        /*      优先级      */
+        // && 的优先级大于 ||
+        var d = 1 || 2 && 3; // 2 && 3 = 3; 1 || 3 = 1;
+        console.log(d);
+
+
+        // 代码块 {}
+    </script>
+
+
+</head>
+
+
+<body>
+    <!-- 将16进制四位Unicode编码转为10进制 -->
+    <!-- &# + 编码 -->
+    <h1 style="font-size: 200px;">&#9760</h1>
+    <h1 style="font-size: 100px;">&#9856</h1>
+</body>
+
+</html>

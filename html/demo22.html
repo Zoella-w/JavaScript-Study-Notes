@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>全选练习</title>
+
+    <script type="text/javascript">
+        window.onload = function() {
+
+            var items = document.getElementsByName("items"),
+                checkAll = document.getElementById("checkAllBox");
+
+            function MyClick(btn, fun) {
+                var btn = document.getElementById(btn);
+                btn.onclick = fun;
+            }
+
+            MyClick("checkAllBtn", function() {
+                for (var i in items) {
+                    items[i].checked = true;
+                }
+                checkAll.checked = true;
+            });
+
+            MyClick("checkNoBtn", function() {
+                for (var i in items) {
+                    items[i].checked = false;
+                }
+                checkAll.checked = false;
+            });
+
+            MyClick("checkRevBtn", function() {
+                for (var i in items) {
+                    if (items[i].checked == false) {
+                        items[i].checked = true;
+                    } else {
+                        items[i].checked = false;
+                    }
+                }
+                if (checkAll.checked == false) {
+                    checkAll.checked = true;
+                } else {
+                    checkAll.checked = false;
+                }
+            });
+
+            MyClick("sendBtn", function() {
+                for (var i in items) {
+                    if (items[i].checked == true) {
+                        alert(items[i].value);
+                    }
+                }
+            });
+
+        };
+    </script>
+
+</head>
+
+<body>
+    <form method="post" action="">
+        你爱好的运动是？<input type="checkbox" id="checkAllBox" />全选/全不选
+        <br/>
+        <input type="checkbox" name="items" value="足球" />足球
+        <input type="checkbox" name="items" value="篮球" />篮球
+        <input type="checkbox" name="items" value="羽毛球" />羽毛球
+        <input type="checkbox" name="items" value="乒乓球" />乒乓球
+        <br />
+        <input type="button" id="checkAllBtn" value="全 选" />
+        <input type="button" id="checkNoBtn" value="全不选" />
+        <input type="button" id="checkRevBtn" value="反 选" />
+        <input type="button" id="sendBtn" value="提 交" />
+    </form>
+</body>
+
+</html>

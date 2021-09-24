@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style type="text/css">
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            /*      当滚轮向下滚动时，box1变长，
+                    向上滚动时，会变短      */
+            var box1 = document.getElementById("box1");
+
+            box1.onwheel = function(event) {
+                event = event || window.event;
+
+                // 判断滚轮滚动的方向
+                // 向上为负数，向下为正数
+                // alert(event.deltaY);
+                if (event.deltaY > 0) {
+                    box1.style.height = box1.clientHeight - 10 + "px";
+                } else {
+                    box1.style.height = box1.clientHeight + 10 + "px";
+                }
+            };
+
+            /*      当浏览器有滚动条时，滚动条会随之滚动        */
+            // 为浏览器默认行为，可以通过return false取消
+            // 通过addEventListener()方法绑定的响应函数，取消默认行为时不能使用
+            // 需要使用event.preventDefault()来取消默认行为，IE8不支持（if判断）
+
+
+            /*      键盘事件        */
+            // onKeydown 和 onKeyup
+            // 需要绑定在可以获得焦点的对象或document
+            // 数字的keyCode是48~57
+
+            var input1 = document.getElementById("input1");
+
+            input1.onkeydown = function(event) {
+                event = event || window.event;
+
+                // 如果按着一个按键不松手，事件会连续触发
+                // onkeydown连续触发时，第一次和第二次间隔会长一些，防误触
+
+                // 可以通过keyCode打印按键编码
+                console.log(event.keyCode);
+
+                // 拒绝输入数字，取消默认行为
+                if (event.keyCode >= 48 && event.keyCode <= 57) {
+                    return false;
+                }
+
+                // 判断y是否被按下
+                if (event.keyCode === 89 && event.ctrlKey) {
+                    console.log("ctrl和y被按下了");
+                }
+            };
+
+            input1.onkeyup = function() {
+                console.log("松开按键");
+            };
+        };
+    </script>
+
+</head>
+
+
+<body style="height: 2000px;">
+    <div id="box1"></div>
+    <input type="text" id="input1" />
+</body>
+
+</html>

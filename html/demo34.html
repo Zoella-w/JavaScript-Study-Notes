@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style type="text/css">
+        #div1 {
+            width: 500px;
+            padding: 30px;
+            text-align: center;
+            margin: 50px auto;
+            background-color: pink;
+        }
+        
+        img {
+            display: block;
+            height: 250px;
+            margin: 0 auto;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            /*      setInterval()定时调用       */
+            // 第一个参数：回调函数
+            // 第二个参数：每次调用间隔的时间，单位为毫秒
+            // 返回一个Number类型的值，作为定时器的标识
+
+            //    var count = document.getElementById("count");
+            //     var num = 1;
+            // var timer = setInterval(function() {
+
+            //     count.innerHTML = num++;
+
+            //     if (num == 10) {
+            //         clearInterval(timer);
+            //     }
+            // }, 100);
+
+            // clearInterval() 可以用来关闭定时器
+
+            var img1 = document.getElementById("img1");
+            var btn1 = document.getElementById("btn1");
+            var btn2 = document.getElementById("btn2");
+
+            var imgArr = ["img/img1.jpg", "img/img2.jpg", "img/img3.jpg", "img/img4.jpg"];
+            var index = 0;
+            var timer;
+
+            btn1.onclick = function() {
+                // 每点击一次按钮，就会开启一个定时器
+                // 导致图片切换速度过快
+                // 开启前把当前元素的前一个定时器关掉！
+                clearInterval(timer);
+
+                timer = setInterval(function() {
+                    index = (index + 1) % imgArr.length;
+                    img1.src = imgArr[index];
+                    console.log(img1.src);
+                }, 800);
+
+            };
+
+            btn2.onclick = function() {
+                // clearInterval()可以接受任意参数，有效则停止，无效则什么也不做
+                clearInterval(timer);
+            };
+
+            /*      延时调用        */
+            // 不马上执行，隔一段时间再执行，只调用一次
+            var timer1 = setTimeout(function() {
+                console.log("hahaha");
+            }, 3000);
+
+            clearTimeout(timer1); // 关闭延时调用
+
+        };
+    </script>
+
+</head>
+
+
+<body>
+    <!-- <h1 id="count">1</h1> -->
+    <div id="div1">
+        <img src="img/img1.jpg" id="img1">
+        <br>
+        <button id="btn1">开 始</button> &nbsp;
+        <button id="btn2">停</button>
+    </div>
+
+</body>
+
+</html>

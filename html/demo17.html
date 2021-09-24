@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script type="text/javascript">
+        /*      String方法      */
+        // 在底层，字符串以字符数组形式存储
+        var str1 = "Hello, world!";
+        // length
+
+        /*      charAt()        */
+        // 返回字符串中指定位置的字符
+        console.log(str1.charAt(0));
+
+        /*      charCodeAt()        */
+        // 返回字符串中指定位置的字符的Unicode
+
+        /*      fromCharCode()      */
+        // 根据字符编码获取字符
+        // 通过构造函数String调用
+        var result1 = String.fromCharCode(20045);
+        console.log(result1);
+
+        /*      concat      */
+        // 作用和 + 一样
+
+        /*      indexOf()       */
+        // 是否含有指定内容，返回索引（没有则为-1）
+        // 第二个参数为开始查找位置
+        var result2 = str1.indexOf("H", 0);
+        console.log(result2);
+        result2 = str1.indexOf("h"); // 区分大小写
+        console.log(result2);
+
+        /*      lastIndexOf()       */
+        // 从后往前
+
+        /*      slice(a, b)     */
+        // a到b截取
+        // 省略第二个参数，截取到最后
+        // 负数表倒数
+
+        /*      subString()     */
+        // 和slice()类似
+        // 不接受负数，默认为0
+        // 调整参数位置（左小右大）
+
+        /*      substr()        */
+        // 第一个参数开始索引，第二个参数为数量
+
+        /*      split()     */
+        // 根据分隔符将字符串拆分为数组
+        var str2 = "1,2,3,4,5,6,3"
+        var result3 = str2.split(",");
+        console.log(result3);
+        result3 = str2.split("3");
+        console.log(result3);
+        result3 = str2.split("");
+        console.log(result3);
+
+        /*      toUpperCase()       */
+        // 转为大写返回
+        var str3 = "abCdE";
+        var result4 = str3.toUpperCase();
+        console.log(result4);
+
+        /*      toLowerCase()       */
+        // 转为小写返回
+    </script>
+
+
+</head>
+
+<body>
+
+</body>
+
+</html>

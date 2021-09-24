@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            /* 开启box1的绝对定位 */
+            position: absolute;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            var box1 = document.getElementById("box1");
+            document.onmousemove = function(event) {
+                // clientX和clientY都是鼠标相对可见窗口的坐标
+                // 有滚动条时会有误差
+
+                // pageX和pageY可以获取鼠标相对于当前页面的坐标
+                // var x = event.pageX;
+                // var y = event.pageY;
+
+                // 如需兼容IE8，不能使用pageX和pageY
+                var sl = document.body.scrollLeft || document.documentElement.scrollLeft,
+                    st = document.body.scrollTop || document.documentElement.scrollTop;
+
+                var x = event.clientX + sl,
+                    y = event.clientY + st;
+
+                box1.style.left = x + "px";
+                box1.style.top = y + "px";
+            };
+
+            var box2 = document.getElementById("box2");
+            box2.onmousemove = function(event) {
+                event = event || window.event;
+                event.cancelBubble = true;
+            };
+        };
+    </script>
+
+</head>
+
+<body style="height: 2000px; width: 2000px; overflow: auto;">
+    <div id="box2" style="width: 500px; height: 500px; background-color: #bfa;"></div>
+    <!-- 冒泡：红色box会进入绿色区域 -->
+    <div id="box1"></div>
+</body>
+
+</html>

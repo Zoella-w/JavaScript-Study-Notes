@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #box1 {
+            width: 300px;
+            height: 400px;
+            background-color: red;
+        }
+        
+        #box2 {
+            width: 200px;
+            height: 200px;
+            overflow: scroll;
+        }
+        
+        #box4 {
+            width: 200px;
+            height: 300px;
+            background-color: #bfa;
+            overflow: auto;
+        }
+        
+        #box5 {
+            width: 450px;
+            height: 600px;
+            background-color: yellow;
+        }
+    </style>
+
+    <script type="text/javascript">
+        /*      修改DOM的CSS样式        */
+        window.onload = function() {
+            var box1 = document.getElementById("box1"),
+                btn1 = document.getElementById("btn1"),
+                btn2 = document.getElementById("btn2"),
+                btn3 = document.getElementById("btn3");
+
+            btn1.onclick = function() {
+                box1.style.width = "400px";
+                // 如果样式名中含有-，需要修改为驼峰命名法
+                box1.style.backgroundColor = "pink";
+
+                // 内联样式优先级较高，故可以修改
+                // 若样式中写了 !important，则无法修改
+                // height: 200px !important
+            };
+
+            btn2.onclick = function() {
+                // 无法读取样式表
+                // 只能读取内联样式，所以必须先点击btn1
+                alert(box1.style.width);
+            };
+
+            // currentStyle，除了IE都不兼容
+            // 读取元素当前显示的样式
+            // alert(box1.currentStyle.width);
+
+            // window.getComputedStyle()方法，其他浏览器使用
+            // 两个参数：要读取样式的元素；伪元素（一般为null）
+            // 返回封装当前样式的对象
+            // var obj = getComputedStyle(box1, null);
+            // alert(obj.width);
+            // alert(obj.backgroundColor); // rgb值
+
+            // 既兼容IE8，又支持其他浏览器
+            function getStyle(obj, cssName) {
+                // 注意没有window，会认为是变量，如果不存在则报错
+                // 有window，会认为是属性，如果不存在会返回false
+                if (window.getComputedStyle) {
+                    return getComputedStyle(obj, null)[cssName];
+                } else {
+                    return obj.currentStyle[cssName];
+                }
+            }
+
+            btn3.onclick = function() {
+                alert(getStyle(box1, "width"));
+            };
+
+            btn4.onclick = function() {
+                // clientWidth和clientHeight获取可见宽度和高度
+                // 返回数字，不带px，可以直接进行计算
+                // 包括内容区和内边距，不包括外边距，不包括滚动条
+                alert(box1.clientWidth);
+
+                // offsetWidth和offsetHeight包括外边距
+            };
+
+            btn5.onclick = function() {
+                // offsetParent获取当前元素的定位祖先元素
+                // 找最近的开启定位为relative的祖先元素
+                // 如果都没有，则返回body
+                alert(box1.offsetParent.id); // box2
+            };
+
+            btn6.onclick = function() {
+                // offsetLeft相对于当前元素的水平偏移量
+                // offsetTop相对于当前元素的垂直偏移量
+                alert(box1.offsetLeft);
+                alert(box1.offsetTop);
+            };
+
+            btn7.onclick = function() {
+                // scrollHeight - scrollTop == clientHeight
+                // 说明垂直滚动条到底了
+
+                // ScrollWidth - scrollLeft == clientWidth
+                // 说明水平滚动条到底了
+
+                // ScrollWidth和ScrollHeight获取整个水平/垂直滚动区域的偏移量
+                console.log(box4.scrollWidth); // 450
+                console.log(box4.scrollHeight); // 600
+
+                // ScrollLeft和ScrollTop获取水平/垂直滚动条滚动距离
+                console.log(box4.scrollLeft); // 267
+                console.log(box4.scrollTop); // 317
+
+                // 不包括滚动条
+                console.log(box4.clientWidth); // 183
+                console.log(box4.clientHeight); // 283
+            };
+
+        };
+    </script>
+
+</head>
+
+<body>
+    <button id="btn1">changeStyle</button>
+    <button id="btn2">styleWidth</button>
+    <button id="btn3">getStyle</button>
+    <button id="btn4">clientWidth</button>
+    <button id="btn5">offsetParent</button>
+    <button id="btn6">offSetLeft&Top</button>
+    <button id="btn7">scrollWidth&Height&Left&TOP、ClientWidth&Height</button>
+    <br/>
+    <br/>
+    <div id="box2" style="position: relative;">
+        <div id="box1" style="position:relative;"></div>
+    </div>
+    <div id="box4">
+        <div id="box5"></div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            /*      DOM查询     */
+
+            // window.getElementsByTagName() 、 obj.getElementsByTagName()
+            // 范围不同（第二个范围在obj的子结点中）
+
+            // childNodes属性会获取当前元素（包括文本节点在内）的所有子节点
+            // 标签间的行也算（不包括IE8及以下）
+
+            // children属性只返回当前元素的子元素
+            // 推荐使用
+
+            // firstChild属性会获取当前元素（包括文本节点在内）的第一个子节点
+            // 包括空白文本节点算（除了IE8及以下）
+
+            // firstElementChild只返回当前元素的第一个子元素
+            // IE8及以下不支持
+
+            /*      定义函数，为指定元素绑定单击响应函数        */
+            function myClick(idStr, fun) {
+                var btn = document.getElementById(idStr);
+                btn.onclick = fun;
+            }
+
+            myClick("btn1", function() {
+                alert("I'm btn1.");
+            });
+
+            myClick("btn2", function() {
+                alert("Hi, I'm btn2~");
+            });
+
+            myClick("btn3", function() {
+                alert("This is btn3.");
+            });
+
+            myClick("btn4", function() {
+                var btn = document.getElementById("btn4");
+                // obj.parentElement
+
+                // obj.previousSibling 前一个兄弟节点（可为文本）
+
+                // obj.previousElementSibling 前一个兄弟元素
+                alert(btn.parentElement.innerHTML);
+                alert(btn.parentElement.innerText);
+            });
+
+            /*      获取body、html根元素        */
+            var body = document.body;
+            // body = getElementsByTagName("body")[0];
+            var html = document.documentElement;
+            // 所有元素
+            var all = document.all;
+            // all = getElementsByTagName("*");
+            console.log(all.length);
+            console.log(all);
+
+            /*      根据元素class值获取元素对象     */
+            // IE8及以下不支持
+            var button = document.getElementsByClassName("btn");
+            console.log(button.length); // 4
+
+            /*      获取特定class中的特定标签       */
+            // 需要一个选择器字符串作为参数，根据CSS选择器查询一个元素对象
+            // IE8也支持
+
+            // 只返回第一个满足条件的
+            var firstBtn = document.querySelector(".div1 button");
+            console.log(firstBtn);
+
+            // 以数组返回全部
+            var allBtn = document.querySelectorAll(".div1 button");
+            console.log(allBtn);
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="div1" id="d1">
+        I'm div.
+        <br/>
+        <button class="btn" id="btn1">1</button>
+        <button class="btn" id="btn2">2</button>
+        <button class="btn" id="btn3">3</button>
+        <button class="btn" id="btn4">4</button>
+    </div>
+</body>
+
+</html>

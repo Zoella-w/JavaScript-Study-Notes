@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .b1 {
+            height: 100px;
+            width: 100px;
+            background-color: red;
+        }
+        
+        .b2 {
+            height: 200px;
+            width: 200px;
+            background-color: yellow;
+        }
+        
+        .b3 {
+            height: 200px;
+            background-color: yellow;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            /*      类的操作      */
+            // 将两种语言分离
+
+            var box1 = document.getElementById("box1");
+            var btn1 = document.getElementById("btn1");
+            var btn2 = document.getElementById("btn2");
+            var btn3 = document.getElementById("btn3");
+            var btn4 = document.getElementById("btn4");
+
+            // 判断是否包含
+            function hasClass(obj, cn) {
+                var reg = new RegExp("\\b" + cn + "\\b");
+                return reg.test(obj.className);
+            }
+
+            // 添加
+            function addClass(obj, cn) {
+                if (!hasClass(obj, cn)) {
+                    obj.className += " " + cn;
+                }
+            }
+
+            // 删除
+            function removeClass(obj, cn) {
+                var reg = new RegExp("\\b" + cn + "\\b");
+                // 空串替换要删除的内容
+                obj.className = obj.className.replace(reg, "");
+            }
+
+            // 切换（有：删除  无：添加）
+            function toggleClass(obj, cn) {
+                if (hasClass(obj, cn)) {
+                    removeClass(obj, cn);
+                } else {
+                    addClass(obj, cn);
+                }
+            }
+
+            btn1.onclick = function() {
+                /*      覆盖样式        */
+                box1.className = "b2";
+            }
+
+            btn2.onclick = function() {
+                /*      添加样式        */
+                addClass(box1, "b3");
+            }
+
+            btn3.onclick = function() {
+                /*      删除样式        */
+                removeClass(box1, "b3");
+            }
+
+            btn4.onclick = function() {
+                /*      切换样式        */
+                toggleClass(box1, "b3");
+            }
+
+        }
+    </script>
+
+</head>
+
+
+<body>
+    <button id="btn1" class="btn1">覆盖</button>
+    <button id="btn2" class="btn1">添加</button>
+    <button id="btn3" class="btn1">删除</button>
+    <button id="btn4" class="btn1">切换</button>
+    <br>
+    <br>
+    <div id="box1" class="b1"></div>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script type="text/javascript">
+        /*      函数(也是对象)      */
+
+        /*      创建函数对象        */
+        // 构造函数（很少使用）
+        var f1 = new Function("console.log(\"hello\")");
+
+        // 声明函数
+        // function 函数名([形参1,形参2,...]){}
+        function f2() {
+            console.log("hi~");
+        }
+
+        // 函数表达式（匿名函数的赋值，加;）
+        var f3 = function() {
+            console.log("hi~~");
+        };
+
+        /*      函数调用        */
+        f1();
+        f2();
+        f3();
+
+        // 注意实参的类型和个数
+        function sum(a, b) {
+            console.log(a + b);
+        }
+        sum(12, 14);
+        sum(123, "hello");
+        sum(12, true);
+        sum(123); // b为undefined，结果为NaN
+
+        // return返回值（可以是对象、函数...）
+        function s(a, b) {
+            return a + b;
+        }
+        var result = s(12, 13);
+        console.log(result);
+        // 如果没有return或者return后没有值，返回undefined
+
+        // 实参可以为函数
+        function f4(a) {
+            console.log(a);
+        }
+        f4(f3);
+
+        /* function f5(f4()){} 意为：调用f4，把返回值作为f5的实参 */
+
+        /*      立即执行函数        */
+        // 只调用一次，用完就扔
+        // () 表明是整体，否则编译器不认识function()
+        (function(a, b) {
+            alert(a + b);
+        })(1, 2);
+
+        /*      方法        */
+        // 函数作为对象属性时，称其为该对象的方法(method)
+        // "abc".toString(); document.write(); console.log(); ...
+        // 函数和方法无本质区别
+        var obj = {
+            age: 18,
+            fun: function(a, b) {
+                console.log(a - b);
+            }
+        };
+        obj.fun(3, 9);
+
+        // 枚举对象的属性和函数(方法)
+        // for(var variable in objective){} 
+        for (var n in obj) {
+            console.log(n);
+            // 使用obj[n]得到属性值
+            console.log(obj[n])
+        }
+    </script>
+
+
+</head>
+
+<body>
+</body>
+
+</html>
